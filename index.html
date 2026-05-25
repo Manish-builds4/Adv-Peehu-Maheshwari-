@@ -1,0 +1,548 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Adv. Peehu Maheshwari | Advocate & Legal Content Creator</title> 
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet"> 
+    <style> 
+        *{margin:0;padding:0;box-sizing:border-box} 
+        :root{ --void:#0D0A12; --surface:#13101A; --surface2:#1A1525; --purple:#7C3AED; --purple2:#9F67F5; --pink:#EC4899; --pink2:#F472B6; --gold6:#F5C842; --cream4:#FDF6FF; --white:#FEFEFE; --dim4:#8B7AA0; --border4:rgba(124,58,237,.15); --grad:linear-gradient(135deg,var(--purple),var(--pink)); } 
+        html{scroll-behavior:smooth;overflow-x:hidden} 
+        body{font-family:'DM Sans',sans-serif;background:var(--void);color:var(--white);overflow-x:hidden} 
+        ::-webkit-scrollbar{width:2px}::-webkit-scrollbar-thumb{background:var(--purple2)} 
+        
+        /* ── CURSOR ── */ 
+        .cur{width:8px;height:8px;border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);background:var(--pink2);mix-blend-mode:screen} 
+        .cur-ring{width:32px;height:32px;border:1px solid rgba(236,72,153,.3);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left .12s,top .12s} 
+        
+        /* ── NEW SVG LOGO & LOADER ANIMATION ── */ 
+        #loader{position:fixed;inset:0;background:var(--void);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity .8s,visibility .8s;overflow:hidden} 
+        #loader.hide{opacity:0;visibility:hidden} 
+        .l-bg-grad{position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(124,58,237,.15),transparent 70%)} 
+        
+        .loader-svg {
+            width: 120px;
+            height: 120px;
+            position: relative;
+            z-index: 2;
+            filter: drop-shadow(0 0 20px rgba(236,72,153,0.3));
+        }
+        .logo-path {
+            fill: none;
+            stroke: url(#logoGrad);
+            stroke-width: 6;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 400;
+            stroke-dashoffset: 400;
+            animation: logoDraw 1.8s cubic-bezier(0.86, 0, 0.07, 1) forwards;
+        }
+        /* Sequential drawing for paths */
+        .logo-path:nth-child(2) { animation-delay: 0.1s; }
+        .logo-path:nth-child(3) { animation-delay: 0.3s; }
+        .logo-path:nth-child(4) { animation-delay: 0.5s; }
+
+        @keyframes logoDraw {
+            100% { stroke-dashoffset: 0; }
+        }
+
+        .l-role{font-size:.62rem;letter-spacing:6px;text-transform:uppercase;color:var(--dim4);opacity:0;animation:fadeUp5 .6s 1.2s forwards;position:relative;z-index:2;margin-top: 10px;} 
+        .l-line5{width:120px;height:1px;background:var(--border4);overflow:hidden;opacity:0;animation:fadeUp5 .4s 1.1s forwards;position:relative;z-index:2} 
+        .l-line5-fill{height:100%;background:var(--grad);animation:fill5 1.5s ease forwards 1.2s;width:0} 
+        @keyframes fill5{to{width:100%}} 
+        @keyframes fadeUp5{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}} 
+        
+        /* ── NAV & MINI LOGO ── */ 
+        nav{position:fixed;top:0;width:100%;z-index:200;padding:18px 5%;display:flex;justify-content:space-between;align-items:center;transition:.4s} 
+        nav.solid{background:rgba(13,10,18,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border4)} 
+        
+        .nav-logo5{display:flex;align-items:center;gap:12px;font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;text-decoration:none;color:var(--white);letter-spacing:.5px} 
+        .nav-logo-icon { width: 28px; height: 28px; animation: pulseGlow 3s infinite alternate; }
+        .nav-logo5 em{font-style:italic;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent} 
+        
+        @keyframes pulseGlow {
+            0% { filter: drop-shadow(0 0 5px rgba(124,58,237,0.2)); transform: scale(1); }
+            100% { filter: drop-shadow(0 0 15px rgba(236,72,153,0.6)); transform: scale(1.05); }
+        }
+
+        .nav-links5{display:flex;gap:32px;list-style:none} 
+        .nav-links5 a{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--dim4);text-decoration:none;transition:.3s;font-weight:500} 
+        .nav-links5 a:hover{color:var(--pink2)} 
+        .nav-cta5{background:var(--grad);color:#fff;padding:9px 22px;font-size:.68rem;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;transition:.3s;border-radius:100px;font-weight:600} 
+        .nav-cta5:hover{opacity:.85;transform:translateY(-1px);box-shadow:0 8px 24px rgba(236,72,153,.3)} 
+        .ham5{display:none;flex-direction:column;gap:5px;cursor:pointer} 
+        .ham5 span{width:22px;height:1.5px;background:var(--white);display:block} 
+        .mob5{display:none;position:fixed;inset:0;background:var(--void);z-index:190;flex-direction:column;align-items:center;justify-content:center;gap:28px} 
+        .mob5.on{display:flex} 
+        .mob5 a{font-family:'Playfair Display',serif;font-size:2.2rem;font-style:italic;color:var(--white);text-decoration:none;transition:.3s} 
+        .mob5 a:hover{color:var(--pink2)} 
+        
+        /* ── HERO ── */ 
+        .hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:center;padding:100px 5% 60px} 
+        .hero-bg5{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 80% 40%,rgba(124,58,237,.18) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 10% 80%,rgba(236,72,153,.1) 0%,transparent 50%)} 
+        .hero-grid5{position:absolute;inset:0;background-image:linear-gradient(rgba(124,58,237,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,.04) 1px,transparent 1px);background-size:50px 50px;mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,black,transparent)} 
+        .hero-content5{position:relative;z-index:2;max-width:720px} 
+        .hero-badge5{display:inline-flex;align-items:center;gap:8px;background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.25);padding:6px 16px;border-radius:100px;font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--purple2);margin-bottom:28px;opacity:0;animation:fadeUp5 .8s .3s forwards} 
+        .hero-badge5-dot{width:6px;height:6px;background:var(--pink);border-radius:50%;animation:dotPulse5 1.5s ease infinite} 
+        @keyframes dotPulse5{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.5)}} 
+        .hero-h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,7vw,6.5rem);font-weight:900;line-height:1.0;letter-spacing:-2px;margin-bottom:20px} 
+        .h1r{display:block;overflow:hidden} 
+        .h1i{display:block;opacity:0;transform:translateY(100%)} 
+        .h1i:nth-child(1){animation:slideUp5 .9s cubic-bezier(.16,1,.3,1) .5s forwards} 
+        .h1i.grad-text{animation:slideUp5 .9s cubic-bezier(.16,1,.3,1) .65s forwards;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-style:italic} 
+        .h1i:nth-child(3){animation:slideUp5 .9s cubic-bezier(.16,1,.3,1) .8s forwards} 
+        @keyframes slideUp5{to{opacity:1;transform:translateY(0)}} 
+        .hero-tags{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px;opacity:0;animation:fadeUp5 .8s 1.1s forwards} 
+        .htag{border:1px solid rgba(255,255,255,.1);padding:6px 14px;border-radius:100px;font-size:.68rem;color:var(--dim4);font-weight:300;transition:.3s} 
+        .htag:hover{border-color:var(--purple2);color:var(--purple2)} 
+        .hero-sub5{font-size:.96rem;line-height:1.85;color:var(--dim4);max-width:500px;margin-bottom:44px;font-weight:300;opacity:0;animation:fadeUp5 .8s 1.3s forwards} 
+        .hero-btns5{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:fadeUp5 .8s 1.5s forwards} 
+        .btn5-primary{background:var(--grad);color:#fff;padding:14px 32px;font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;border:none;cursor:pointer;transition:.3s;border-radius:100px;text-decoration:none;display:inline-block} 
+        .btn5-primary:hover{opacity:.85;transform:translateY(-2px);box-shadow:0 16px 40px rgba(124,58,237,.35)} 
+        .btn5-secondary{border:1px solid rgba(255,255,255,.12);color:var(--white);padding:14px 32px;font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:300;text-decoration:none;display:inline-block;transition:.3s;border-radius:100px} 
+        .btn5-secondary:hover{border-color:var(--pink2);color:var(--pink2)} 
+        .hero-right5{position:absolute;right:5%;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:16px;opacity:0;animation:fadeUp5 1s 1.8s forwards} 
+        .hstat5{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);padding:20px 22px;border-radius:12px;text-align:right;backdrop-filter:blur(10px);position:relative;overflow:hidden} 
+        .hstat5::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--grad)} 
+        .hstat5-n{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1} 
+        .hstat5-l{font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--dim4);margin-top:4px} 
+        
+        /* ── TICKER ── */ 
+        .ticker5{padding:14px 0;overflow:hidden;background:var(--surface);border-top:1px solid var(--border4);border-bottom:1px solid var(--border4)} 
+        .ticker5-inner{display:inline-flex;animation:ticker5 22s linear infinite;white-space:nowrap} 
+        .t5{font-size:.72rem;letter-spacing:3px;text-transform:uppercase;padding:0 28px;color:var(--dim4)} 
+        .t5-dot{color:var(--pink);margin:0 6px} 
+        
+        /* ── ABOUT ── */ 
+        .about5{padding:100px 5%;background:var(--void);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center} 
+        .about5-img{position:relative} 
+        .a5-main{width:100%;aspect-ratio:3/4;background:url('https://picsum.photos/seed/lawyer5/600/800') center/cover;display:block;border-radius:16px;filter:brightness(.9) saturate(1.1)} 
+        .a5-glow{position:absolute;top:-20px;right:-20px;width:200px;height:200px;background:radial-gradient(circle,rgba(124,58,237,.3),transparent 70%);border-radius:50%;filter:blur(30px);pointer-events:none} 
+        .a5-badge{position:absolute;bottom:24px;left:-24px;background:var(--surface2);border:1px solid var(--border4);padding:16px 20px;border-radius:12px;backdrop-filter:blur(12px)} 
+        .a5bn{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1} 
+        .a5bl{font-size:.58rem;letter-spacing:2px;text-transform:uppercase;color:var(--dim4);margin-top:4px} 
+        .a5-tag{font-size:.62rem;letter-spacing:5px;text-transform:uppercase;color:var(--purple2);margin-bottom:14px} 
+        .a5-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,3rem);font-weight:700;color:var(--white);line-height:1.2;margin-bottom:20px} 
+        .a5-title em{font-style:italic;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent} 
+        .a5-p{font-size:.9rem;line-height:1.95;color:var(--dim4);font-weight:300;margin-bottom:14px} 
+        .a5-highlights{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px} 
+        .a5h{background:var(--surface2);border:1px solid var(--border4);padding:16px;border-radius:10px;transition:.3s} 
+        .a5h:hover{border-color:rgba(124,58,237,.3);background:rgba(124,58,237,.06)} 
+        .a5h-icon{font-size:1.2rem;margin-bottom:8px;display:block} 
+        .a5h-title{font-size:.82rem;font-weight:600;color:var(--white);margin-bottom:4px} 
+        .a5h-desc{font-size:.74rem;color:var(--dim4);font-weight:300;line-height:1.5} 
+        .a5-nums{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border4);margin-top:28px;border-radius:10px;overflow:hidden} 
+        .a5n{background:var(--surface2);padding:20px 16px;text-align:center} 
+        .a5n-n{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1} 
+        .a5n-l{font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--dim4);margin-top:6px} 
+        
+        /* ── SERVICES ── */ 
+        .services5{padding:100px 5%;background:var(--surface)} 
+        .s5-header{text-align:center;margin-bottom:64px} 
+        .s5-tag{font-size:.62rem;letter-spacing:5px;text-transform:uppercase;color:var(--purple2);margin-bottom:14px} 
+        .s5-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:700;color:var(--white);line-height:1.1;margin-bottom:14px} 
+        .s5-title em{font-style:italic;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent} 
+        .s5-sub{font-size:.9rem;color:var(--dim4);max-width:500px;margin:0 auto;line-height:1.7;font-weight:300} 
+        .s5-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px} 
+        .s5card{background:var(--void);border:1px solid var(--border4);border-radius:16px;padding:36px 28px;position:relative;overflow:hidden;transition:.4s;cursor:default} 
+        .s5card::before{content:'';position:absolute;inset:0;background:var(--grad);opacity:0;transition:.4s} 
+        .s5card:hover::before{opacity:.06} 
+        .s5card:hover{border-color:rgba(124,58,237,.3);transform:translateY(-4px);box-shadow:0 20px 50px rgba(124,58,237,.12)} 
+        .s5card-num{font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:900;color:rgba(124,58,237,.08);line-height:1;margin-bottom:14px;position:relative;z-index:1} 
+        .s5card-icon{font-size:1.5rem;margin-bottom:14px;display:block;position:relative;z-index:1} 
+        .s5card-name{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--white);margin-bottom:10px;line-height:1.3;position:relative;z-index:1} 
+        .s5card-desc{font-size:.78rem;line-height:1.8;color:var(--dim4);font-weight:300;position:relative;z-index:1} 
+        .s5card-arrow{display:inline-block;margin-top:18px;font-size:.65rem;letter-spacing:2px;text-transform:uppercase;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;opacity:0;transform:translateX(-8px);transition:.3s;position:relative;z-index:1} 
+        .s5card:hover .s5card-arrow{opacity:1;transform:translateX(0)} 
+        
+        /* ── FOUNDATION ── */ 
+        .foundation{padding:100px 5%;background:var(--void);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center} 
+        .f5-img{width:100%;aspect-ratio:16/9;background:url('https://picsum.photos/seed/foundation5/700/400') center/cover;border-radius:16px;filter:brightness(.75) saturate(1.2);position:relative} 
+        .f5-img::after{content:'';position:absolute;inset:0;background:var(--grad);opacity:.2;border-radius:16px} 
+        .f5-tag{font-size:.62rem;letter-spacing:5px;text-transform:uppercase;color:var(--pink2);margin-bottom:14px} 
+        .f5-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,3rem);font-weight:700;color:var(--white);line-height:1.2;margin-bottom:20px} 
+        .f5-title em{font-style:italic;color:var(--pink2)} 
+        .f5-p{font-size:.9rem;line-height:1.95;color:var(--dim4);font-weight:300;margin-bottom:14px} 
+        .f5-link{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--pink2);text-decoration:none;border-bottom:1px solid rgba(244,114,182,.3);padding-bottom:3px;transition:.3s} 
+        .f5-link:hover{border-color:var(--pink2)} 
+        
+        /* ── CONTENT ── */ 
+        .content5{padding:100px 5%;background:var(--surface)} 
+        .c5-header{text-align:center;margin-bottom:64px} 
+        .c5-tag{font-size:.62rem;letter-spacing:5px;text-transform:uppercase;color:var(--pink2);margin-bottom:14px} 
+        .c5-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:700;color:var(--white);line-height:1.1} 
+        .c5-title em{font-style:italic;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent} 
+        .c5-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px} 
+        .c5card{background:var(--void);border:1px solid var(--border4);border-radius:16px;overflow:hidden;transition:.3s;cursor:default} 
+        .c5card:hover{transform:translateY(-4px);border-color:rgba(236,72,153,.25);box-shadow:0 16px 40px rgba(236,72,153,.1)} 
+        .c5card-img{height:180px;position:relative;overflow:hidden} 
+        .c5card-img img{width:100%;height:100%;object-fit:cover;transition:.4s;filter:brightness(.8)} 
+        .c5card:hover .c5card-img img{transform:scale(1.05)} 
+        .c5card-tag{position:absolute;top:12px;left:12px;background:var(--grad);color:#fff;padding:4px 12px;border-radius:100px;font-size:.62rem;font-weight:600;letter-spacing:1px} 
+        .c5card-body{padding:20px} 
+        .c5card-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--white);margin-bottom:8px;line-height:1.3} 
+        .c5card-desc{font-size:.76rem;line-height:1.7;color:var(--dim4);font-weight:300} 
+        .c5card-meta{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:14px;border-top:1px solid var(--border4)} 
+        .c5card-date{font-size:.65rem;color:var(--dim4)} 
+        .c5card-read{font-size:.65rem;color:var(--purple2);letter-spacing:1px;text-transform:uppercase} 
+        
+        /* ── CONTACT ── */ 
+        .contact5{padding:100px 5%;background:var(--void);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;position:relative;overflow:hidden} 
+        .contact5::before{content:'⚖';position:absolute;right:-40px;top:50%;transform:translateY(-50%);font-size:20rem;color:rgba(124,58,237,.03);pointer-events:none} 
+        .ct5-tag{font-size:.62rem;letter-spacing:5px;text-transform:uppercase;color:var(--purple2);margin-bottom:14px} 
+        .ct5-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:700;color:var(--white);line-height:1.1;margin-bottom:8px} 
+        .ct5-title em{font-style:italic;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent} 
+        .ct5-sub{font-size:.88rem;color:var(--dim4);font-weight:300;line-height:1.8;margin-bottom:36px} 
+        .ct5-info{display:flex;flex-direction:column;gap:20px} 
+        .ct5i-l{font-size:.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--purple2);margin-bottom:4px} 
+        .ct5i-v{font-size:.88rem;color:var(--white);line-height:1.6;font-weight:300} 
+        .ct5i-v a{color:var(--white);text-decoration:none;transition:.3s} 
+        .ct5i-v a:hover{color:var(--pink2)} 
+        .ct5-social{display:flex;gap:10px;margin-top:8px} 
+        .ct5-soc{width:36px;height:36px;border:1px solid var(--border4);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;transition:.3s;cursor:pointer;text-decoration:none;color:var(--white)} 
+        .ct5-soc:hover{border-color:var(--pink2);background:rgba(236,72,153,.1)} 
+        
+        .cform5{display:flex;flex-direction:column;gap:14px} 
+        .cf5-row{display:grid;grid-template-columns:1fr 1fr;gap:14px} 
+        .cform5 input,.cform5 select,.cform5 textarea{background:rgba(255,255,255,.04);border:1px solid var(--border4);color:var(--white);padding:14px 16px;font-family:'DM Sans',sans-serif;font-size:.84rem;font-weight:300;outline:none;transition:.3s;width:100%;border-radius:8px} 
+        .cform5 input:focus,.cform5 textarea:focus{border-color:var(--purple2);background:rgba(124,58,237,.06)} 
+        .cform5 input::placeholder,.cform5 textarea::placeholder{color:var(--dim4)} 
+        .cform5 select{color:var(--dim4)} 
+        .cform5 select option{background:var(--surface);color:var(--white)} 
+        .cform5 textarea{resize:vertical;min-height:110px} 
+        .btn5-submit{background:var(--grad);color:#fff;padding:14px 32px;font-family:'DM Sans',sans-serif;font-size:.75rem;letter-spacing:2px;text-transform:uppercase;font-weight:600;border:none;cursor:pointer;transition:.3s;border-radius:100px;width:100%} 
+        .btn5-submit:hover{opacity:.85;transform:translateY(-2px);box-shadow:0 12px 32px rgba(124,58,237,.3)} 
+        
+        /* ── WA ── */ 
+        .wa{position:fixed;bottom:28px;right:28px;background:linear-gradient(135deg,#25D366,#128C7E);width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:200;box-shadow:0 4px 20px rgba(37,211,102,.35);transition:.3s;text-decoration:none} 
+        .wa:hover{transform:scale(1.1)} 
+        .wa svg{width:26px;height:26px;fill:#fff} 
+        
+        /* ── FOOTER ── */ 
+        footer{background:var(--surface);border-top:1px solid var(--border4);padding:32px 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px} 
+        .f5-logo{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--white)} 
+        .f5-logo em{font-style:italic;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent} 
+        .f5-copy{font-size:.7rem;color:var(--dim4)} 
+        .f5-links{display:flex;gap:20px} 
+        .f5-links a{font-size:.68rem;color:var(--dim4);text-decoration:none;letter-spacing:1px;transition:.3s} 
+        .f5-links a:hover{color:var(--pink2)} 
+        
+        /* ── REVEAL ── */ 
+        .rv{opacity:0;transform:translateY(28px);transition:.8s ease} 
+        .rv.on{opacity:1;transform:translateY(0)} 
+        .rv-l{opacity:0;transform:translateX(-28px);transition:.8s ease} 
+        .rv-l.on{opacity:1;transform:translateX(0)} 
+        .rv-r{opacity:0;transform:translateX(28px);transition:.8s ease} 
+        .rv-r.on{opacity:1;transform:translateX(0)} 
+        @keyframes ticker5{from{transform:translateX(0)}to{transform:translateX(-50%)}} 
+        
+        /* ── MOBILE ── */ 
+        @media(max-width:900px){ 
+            .nav-links5,.nav-cta5{display:none}.ham5{display:flex} 
+            .hero{padding:100px 5% 60px}.hero-right5{display:none} 
+            .about5,.foundation,.contact5{grid-template-columns:1fr;gap:40px;padding:70px 5%} 
+            .s5-grid,.c5-grid{grid-template-columns:1fr} 
+            .services5,.content5{padding:70px 5%} 
+            .a5-badge{left:-10px;bottom:10px} 
+            .cf5-row{grid-template-columns:1fr} 
+            .a5-highlights{grid-template-columns:1fr} 
+            footer{flex-direction:column;text-align:center;padding:22px 5%}.f5-links{justify-content:center} 
+            .cur,.cur-ring{display:none} 
+            body{cursor:auto} 
+        } 
+    </style> 
+</head> 
+<body> 
+    <div class="cur" id="cur"></div> 
+    <div class="cur-ring" id="curRing"></div> 
+    
+    <!-- LOADER --> 
+    <div id="loader"> 
+        <div class="l-bg-grad"></div> 
+        
+        <!-- NEW SVG LINE-DRAWING LOGO -->
+        <svg class="loader-svg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="var(--purple)" />
+                    <stop offset="100%" stop-color="var(--pink)" />
+                </linearGradient>
+            </defs>
+            <!-- Center Pillar -->
+            <line x1="60" y1="20" x2="60" y2="100" class="logo-path" />
+            <!-- Top Beam -->
+            <line x1="20" y1="40" x2="100" y2="40" class="logo-path" />
+            <!-- Left Scale (P motif) -->
+            <path d="M20 40 L20 70 C20 85, 45 85, 45 70 L45 40" class="logo-path" />
+            <!-- Right Scale (M motif) -->
+            <path d="M100 40 L100 70 C100 85, 75 85, 75 70 L75 40" class="logo-path" />
+        </svg>
+
+        <div class="l-line5"><div class="l-line5-fill"></div></div> 
+        <div class="l-role">Advocate · Legal Content Creator · Founder</div> 
+    </div> 
+    
+    <!-- NAV --> 
+    <nav id="nav"> 
+        <a href="#" class="nav-logo5">
+            <!-- MINI SVG PULSING LOGO -->
+            <svg class="nav-logo-icon" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                <line x1="60" y1="20" x2="60" y2="100" stroke="url(#logoGrad)" stroke-width="8" stroke-linecap="round" />
+                <line x1="20" y1="40" x2="100" y2="40" stroke="url(#logoGrad)" stroke-width="8" stroke-linecap="round" />
+                <path d="M20 40 L20 70 C20 85, 45 85, 45 70 L45 40" fill="none" stroke="url(#logoGrad)" stroke-width="8" stroke-linecap="round" />
+                <path d="M100 40 L100 70 C100 85, 75 85, 75 70 L75 40" fill="none" stroke="url(#logoGrad)" stroke-width="8" stroke-linecap="round" />
+            </svg>
+            <span>Adv. <em>Peehu</em></span>
+        </a> 
+        <ul class="nav-links5"> 
+            <li><a href="#about5">About</a></li> 
+            <li><a href="#services5">Services</a></li> 
+            <li><a href="#foundation5">Foundation</a></li> 
+            <li><a href="#contact5">Contact</a></li> 
+        </ul> 
+        <a href="#contact5" class="nav-cta5">Consult Now</a> 
+        <div class="ham5" onclick="toggleMob()"><span></span><span></span><span></span></div> 
+    </nav> 
+    
+    <div class="mob5" id="mob5"> 
+        <a href="#about5" onclick="toggleMob()">About</a> 
+        <a href="#services5" onclick="toggleMob()">Services</a> 
+        <a href="#foundation5" onclick="toggleMob()">Foundation</a> 
+        <a href="#contact5" onclick="toggleMob()">Contact</a> 
+    </div> 
+    
+    <!-- HERO --> 
+    <section class="hero" id="home"> 
+        <div class="hero-bg5"></div> 
+        <div class="hero-grid5"></div> 
+        <div class="hero-content5"> 
+            <div class="hero-badge5"><div class="hero-badge5-dot"></div>Advocate · Legal Content Creator · Founder</div> 
+            <h1 class="hero-h1"> 
+                <span class="h1r"><span class="h1i">Justice.</span></span> 
+                <span class="h1r"><span class="h1i grad-text">Awareness.</span></span> 
+                <span class="h1r"><span class="h1i">Change.</span></span> 
+            </h1> 
+            <div class="hero-tags"> 
+                <span class="htag">⚖️ Advocate</span> 
+                <span class="htag">📱 Legal Creator</span> 
+                <span class="htag">🌸 Peehu Maheshwari Foundation</span> 
+            </div> 
+            <p class="hero-sub5">Adv. Peehu Maheshwari — advocate, legal content creator and founder of Peehu Maheshwari Foundation. Empowering people with legal awareness, one post at a time.</p> 
+            <div class="hero-btns5"> 
+                <a href="#contact5" class="btn5-primary">Book Consultation</a> 
+                <a href="#services5" class="btn5-secondary">Explore Services</a> 
+            </div> 
+        </div> 
+        <div class="hero-right5"> 
+            <div class="hstat5"><div class="hstat5-n">Legal</div><div class="hstat5-l">Content Creator</div></div> 
+            <div class="hstat5"><div class="hstat5-n">⚖️</div><div class="hstat5-l">Practicing Advocate</div></div> 
+            <div class="hstat5"><div class="hstat5-n">🌸</div><div class="hstat5-l">Foundation Founder</div></div> 
+        </div> 
+    </section> 
+    
+    <!-- TICKER --> 
+    <div class="ticker5"> 
+        <div class="ticker5-inner"> 
+            <span class="t5">Advocate<span class="t5-dot">✦</span></span> 
+            <span class="t5">Legal Content Creator<span class="t5-dot">✦</span></span> 
+            <span class="t5">Peehu Maheshwari Foundation<span class="t5-dot">✦</span></span> 
+            <span class="t5">Legal Awareness<span class="t5-dot">✦</span></span> 
+            <span class="t5">Free Consultation<span class="t5-dot">✦</span></span> 
+            <span class="t5">Justice for All<span class="t5-dot">✦</span></span> 
+            <span class="t5">Advocate<span class="t5-dot">✦</span></span> 
+            <span class="t5">Legal Content Creator<span class="t5-dot">✦</span></span> 
+            <span class="t5">Peehu Maheshwari Foundation<span class="t5-dot">✦</span></span> 
+            <span class="t5">Legal Awareness<span class="t5-dot">✦</span></span> 
+            <span class="t5">Free Consultation<span class="t5-dot">✦</span></span> 
+            <span class="t5">Justice for All<span class="t5-dot">✦</span></span> 
+        </div> 
+    </div> 
+    
+    <!-- ABOUT --> 
+    <section class="about5" id="about5"> 
+        <div class="rv-l"> 
+            <div class="about5-img"> 
+                <img class="a5-main" src="https://picsum.photos/seed/advocate5/600/800" alt="Adv. Peehu Maheshwari"> 
+                <div class="a5-glow"></div> 
+                <div class="a5-badge"><div class="a5bn">⚖️</div><div class="a5bl">Practicing Advocate</div></div> 
+            </div> 
+        </div> 
+        <div class="rv-r"> 
+            <div class="a5-tag">About</div> 
+            <h2 class="a5-title">Advocate. Creator.<br><em>Changemaker.</em></h2> 
+            <p class="a5-p">Adv. Peehu Maheshwari is a practicing advocate and legal content creator who believes that legal awareness is a fundamental right — not a privilege. Through her content, courtroom practice and foundation, she works tirelessly to make law accessible and understandable for everyone.</p> 
+            <p class="a5-p">As the founder of Peehu Maheshwari Foundation, she works towards legal empowerment, women's rights, and justice for the underprivileged — combining the power of advocacy with the reach of social media.</p> 
+            <div class="a5-highlights"> 
+                <div class="a5h"><span class="a5h-icon">⚖️</span><div class="a5h-title">Practicing Advocate</div><div class="a5h-desc">Experienced in civil, criminal and constitutional matters</div></div> 
+                <div class="a5h"><span class="a5h-icon">📱</span><div class="a5h-title">Legal Content Creator</div><div class="a5h-desc">Making complex law simple and accessible for everyone</div></div> 
+                <div class="a5h"><span class="a5h-icon">🌸</span><div class="a5h-title">Foundation Founder</div><div class="a5h-desc">@peehumaheswarifoundation — legal empowerment for all</div></div> 
+                <div class="a5h"><span class="a5h-icon">🎤</span><div class="a5h-title">Speaker & Educator</div><div class="a5h-desc">Legal workshops, seminars and awareness campaigns</div></div> 
+            </div> 
+            <div class="a5-nums"> 
+                <div class="a5n"><div class="a5n-n">⚖️</div><div class="a5n-l">Advocate</div></div> 
+                <div class="a5n"><div class="a5n-n">📱</div><div class="a5n-l">Creator</div></div> 
+                <div class="a5n"><div class="a5n-n">🌸</div><div class="a5n-l">Founder</div></div> 
+            </div> 
+        </div> 
+    </section> 
+    
+    <!-- SERVICES --> 
+    <section class="services5" id="services5"> 
+        <div class="s5-header rv"> 
+            <div class="s5-tag">What I Do</div> 
+            <h2 class="s5-title">Legal Services &<br><em>More</em></h2> 
+            <p class="s5-sub">From courtroom representation to legal awareness content — here's how Adv. Peehu Maheshwari can help you.</p> 
+        </div> 
+        <div class="s5-grid"> 
+            <div class="s5card rv"><div class="s5card-num">01</div><span class="s5card-icon">⚖️</span><div class="s5card-name">Legal Consultation</div><div class="s5card-desc">One-on-one consultations for civil, criminal, family and constitutional law matters. Get expert legal advice you can trust.</div><span class="s5card-arrow">Book Now →</span></div> 
+            <div class="s5card rv"><div class="s5card-num">02</div><span class="s5card-icon">👨‍👩‍👧</span><div class="s5card-name">Family & Matrimonial Law</div><div class="s5card-desc">Divorce, custody, maintenance, domestic violence and all family law matters handled with sensitivity and legal expertise.</div><span class="s5card-arrow">Consult →</span></div> 
+            <div class="s5card rv"><div class="s5card-num">03</div><span class="s5card-icon">🔒</span><div class="s5card-name">Criminal Defence</div><div class="s5card-desc">Bail applications, FIR matters, trial defence and appeals. Strong legal representation at every stage of criminal proceedings.</div><span class="s5card-arrow">Get Help →</span></div> 
+            <div class="s5card rv"><div class="s5card-num">04</div><span class="s5card-icon">📋</span><div class="s5card-name">Legal Documentation</div><div class="s5card-desc">Affidavits, legal notices, agreements, contracts and all official documentation drafted with precision and legal clarity.</div><span class="s5card-arrow">Get Docs →</span></div> 
+            <div class="s5card rv"><div class="s5card-num">05</div><span class="s5card-icon">📱</span><div class="s5card-name">Legal Content Creation</div><div class="s5card-desc">Collaborations, legal awareness campaigns, brand partnerships and educational content for platforms and organisations.</div><span class="s5card-arrow">Collaborate →</span></div> 
+            <div class="s5card rv"><div class="s5card-num">06</div><span class="s5card-icon">🎤</span><div class="s5card-name">Workshops & Seminars</div><div class="s5card-desc">Legal awareness workshops for schools, colleges, corporates and NGOs. Empowering communities with knowledge of their rights.</div><span class="s5card-arrow">Book →</span></div> 
+        </div> 
+    </section> 
+    
+    <!-- FOUNDATION --> 
+    <section class="foundation" id="foundation5"> 
+        <div class="rv-l"><div class="f5-img"></div></div> 
+        <div class="rv-r"> 
+            <div class="f5-tag">Social Impact</div> 
+            <h2 class="f5-title">Peehu Maheshwari<br><em>Foundation</em></h2> 
+            <p class="f5-p">The Peehu Maheshwari Foundation is Adv. Peehu's commitment to making justice accessible for everyone — especially those who cannot afford it. Through the foundation, we provide free legal aid, awareness programs and advocacy for marginalised communities.</p> 
+            <p class="f5-p">From women's rights to children's education — the foundation works at the intersection of law and social change, driven by the belief that every person deserves access to justice.</p> 
+            <a href="https://instagram.com/peehumaheswarifoundation" target="_blank" class="f5-link">Follow @peehumaheswarifoundation →</a> 
+        </div> 
+    </section> 
+    
+    <!-- CONTENT CREATOR --> 
+    <section class="content5"> 
+        <div class="c5-header rv"> 
+            <div class="c5-tag">Legal Awareness</div> 
+            <h2 class="c5-title">Making Law <em>Simple</em></h2> 
+        </div> 
+        <div class="c5-grid"> 
+            <div class="c5card rv"> 
+                <div class="c5card-img"><img src="https://picsum.photos/seed/legal1/400/200" alt="Fundamental Rights"><span class="c5card-tag">Rights</span></div> 
+                <div class="c5card-body"> 
+                    <div class="c5card-title">Your Fundamental Rights Explained Simply</div> 
+                    <div class="c5card-desc">Understanding Articles 12-35 of the Constitution — what they mean for you in everyday life.</div> 
+                    <div class="c5card-meta"><span class="c5card-date">Legal Awareness</span><span class="c5card-read">Read More →</span></div> 
+                </div> 
+            </div> 
+            <div class="c5card rv"> 
+                <div class="c5card-img"><img src="https://picsum.photos/seed/legal2/400/200" alt="Women's Rights"><span class="c5card-tag">Women</span></div> 
+                <div class="c5card-body"> 
+                    <div class="c5card-title">Women's Legal Rights Every Woman Should Know</div> 
+                    <div class="c5card-desc">From workplace protection to matrimonial rights — a complete guide for every Indian woman.</div> 
+                    <div class="c5card-meta"><span class="c5card-date">Women's Rights</span><span class="c5card-read">Read More →</span></div> 
+                </div> 
+            </div> 
+            <div class="c5card rv"> 
+                <div class="c5card-img"><img src="https://picsum.photos/seed/legal3/400/200" alt="FIR Guidance"><span class="c5card-tag">FIR</span></div> 
+                <div class="c5card-body"> 
+                    <div class="c5card-title">What To Do When Police Refuse to File Your FIR</div> 
+                    <div class="c5card-desc">Your legal options when law enforcement doesn't cooperate — step by step guide.</div> 
+                    <div class="c5card-meta"><span class="c5card-date">Criminal Law</span><span class="c5card-read">Read More →</span></div> 
+                </div> 
+            </div> 
+        </div> 
+    </section> 
+    
+    <!-- CONTACT --> 
+    <section class="contact5" id="contact5"> 
+        <div class="rv-l"> 
+            <div class="ct5-tag">Get In Touch</div> 
+            <h2 class="ct5-title">Let's Talk<br><em>Justice</em></h2> 
+            <p class="ct5-sub">Need legal advice, want to collaborate on content, or invite me for a workshop? I'd love to hear from you.</p> 
+            <div class="ct5-info"> 
+                <div><div class="ct5i-l">Email</div><div class="ct5i-v"><a href="mailto:maheshwariparul60@gmail.com">maheshwariparul60@gmail.com</a></div></div> 
+                <div><div class="ct5i-l">Instagram</div><div class="ct5i-v"><a href="https://instagram.com/adv_peehu_maheshwari" target="_blank">@adv_peehu_maheshwari</a></div></div> 
+                <div><div class="ct5i-l">Foundation</div><div class="ct5i-v"><a href="https://instagram.com/peehumaheswarifoundation" target="_blank">@peehumaheswarifoundation</a></div></div> 
+                <div> 
+                    <div class="ct5i-l">Follow Me</div> 
+                    <div class="ct5-social"> 
+                        <a href="https://instagram.com/adv_peehu_maheshwari" target="_blank" class="ct5-soc" aria-label="Instagram">📸</a> 
+                        <a href="mailto:maheshwariparul60@gmail.com" class="ct5-soc" aria-label="Email">✉️</a> 
+                        <a href="https://instagram.com/peehumaheswarifoundation" target="_blank" class="ct5-soc" aria-label="Foundation">🌸</a> 
+                    </div> 
+                </div> 
+            </div> 
+        </div> 
+        
+        <form class="cform5 rv-r" onsubmit="event.preventDefault();"> 
+            <div class="cf5-row"> 
+                <input type="text" name="name" placeholder="Your Name" required> 
+                <input type="tel" name="phone" placeholder="Phone Number" required> 
+            </div> 
+            <select name="subject" required>
+                <option disabled selected value="">I need help with...</option>
+                <option value="Consultation">Legal Consultation</option>
+                <option value="Family Law">Family / Matrimonial Law</option>
+                <option value="Criminal Matter">Criminal Matter</option>
+                <option value="Documentation">Legal Documentation</option>
+                <option value="Collaboration">Content Collaboration</option>
+                <option value="Workshop">Workshop / Seminar</option>
+                <option value="Other">Other</option>
+            </select> 
+            <input type="email" name="email" placeholder="Your Email" required> 
+            <textarea name="message" placeholder="Tell me how I can help you..." required></textarea> 
+            <button type="submit" class="btn5-submit">Send Message →</button> 
+        </form> 
+    </section> 
+    
+    <a href="https://wa.me/91XXXXXXXXXX" class="wa" target="_blank" aria-label="WhatsApp"> 
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg> 
+    </a> 
+    
+    <footer> 
+        <div class="f5-logo">Adv. <em>Peehu</em> Maheshwari</div> 
+        <div class="f5-copy">© 2026 Adv. Peehu Maheshwari. All rights reserved.</div> 
+        <div class="f5-links"><a href="#about5">About</a><a href="#services5">Services</a><a href="#foundation5">Foundation</a><a href="#contact5">Contact</a></div> 
+    </footer> 
+    
+    <script> 
+        // Loader (extended slightly so the drawing animation finishes before it hides)
+        setTimeout(()=>document.getElementById('loader').classList.add('hide'), 2800); 
+        
+        // Cursor 
+        const cur=document.getElementById('cur'),ring=document.getElementById('curRing'); 
+        let mx=window.innerWidth/2, my=window.innerHeight/2, rx=mx, ry=my; 
+        
+        document.addEventListener('mousemove',e=>{
+            mx=e.clientX;
+            my=e.clientY;
+            cur.style.left=mx+'px';
+            cur.style.top=my+'px'
+        }); 
+        
+        function animRing(){
+            rx+=(mx-rx)*.12;
+            ry+=(my-ry)*.12;
+            ring.style.left=rx+'px';
+            ring.style.top=ry+'px';
+            requestAnimationFrame(animRing)
+        } 
+        animRing(); 
+        
+        // Nav 
+        window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('solid',window.scrollY>60)); 
+        
+        // Mobile menu 
+        function toggleMob(){document.getElementById('mob5').classList.toggle('on')} 
+        
+        // Scroll reveal 
+        const obs=new IntersectionObserver(entries=>{ 
+            entries.forEach((e,i)=>{
+                if(e.isIntersecting){
+                    setTimeout(()=>e.target.classList.add('on'),i*90);
+                    obs.unobserve(e.target)
+                }
+            }) 
+        },{threshold:.08}); 
+        
+        document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(el=>obs.observe(el)); 
+    </script> 
+</body> 
+</html>
